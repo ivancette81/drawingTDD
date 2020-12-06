@@ -1,8 +1,8 @@
 # drawingTDD
 
-*Crearemos una región espacial de 800x800
-*Crearemos un punto objetivo dentro de la región en el punto (400,0)
-*Ejecutaremos 100 rondas de lo siguiente:
+* Crearemos una región espacial de 800x800
+* Crearemos un punto objetivo dentro de la región en el punto (400,0)
+* Ejecutaremos 100 rondas de lo siguiente:
    * Crearemos una población de 50 puntos en el punto (400, 800)
    * Estos puntos realizarán 1000 movimientos aleatorios dentro de la región. Tenemos que almacenar estos movimientos aleatorios (o calcularlos anticipadamente).
    * Si tocan un límite de la región, dejarán de moverse
