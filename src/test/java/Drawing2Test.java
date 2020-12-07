@@ -12,16 +12,29 @@ public class Drawing2Test {
     }
 
     @Test
-    public void oneStepsOneDot(){
+    public void oneStep_OneDot(){
         Board board = new Board();
         board.play(1,1);
-        assertThat(board.getDots(),is(Arrays.asList(new Dot(401,800))));
+        assertThat(board.getDots(),is(Arrays.asList(new Dot(399,799))));
     }
 
     @Test
-    public void twoStepsOneDot(){
+    public void twoSteps_OneDot(){
         Board board = new Board();
         board.play(1,2);
-        assertThat(board.getDots(),is(Arrays.asList(new Dot(401,799))));
+        assertThat(board.getDots(),is(Arrays.asList(new Dot(399,799))));
+    }
+
+    @Test
+    public void anyStepNumber_OneDot(){
+        Board board = new Board();
+        int stepsByRound = (int)Math.round(Math.random()*100);
+        board.play(1,stepsByRound);
+        if((stepsByRound%4) == 0 || (stepsByRound%4) == 1) {
+            assertThat(board.getDots(), is(Arrays.asList(new Dot(399, 799))));
+        }
+        else {
+            assertThat(board.getDots(), is(Arrays.asList(new Dot(400, 800))));
+        }
     }
 }

@@ -1,10 +1,15 @@
-import java.util.Vector;
+public class VectorGeneratorTest extends VectorGenerator {
+    private int x;
+    private int y;
 
-public class VectorGeneratorTest {
+    public VectorGeneratorTest(int inX, int inY){
+        x = inX;
+        y = inY;
+    }
     public MyVector generate(){
-        int x = RandomStepGenerator.generate();
-        int y = RandomStepGenerator.generate();
+        int randomX = (x++ % 3) - 1;
+        int randomY = (y++ % 3) - 1;
 
-        return new MyVector(x,y);
+        return new MyVector(randomX,randomY);
     }
 }

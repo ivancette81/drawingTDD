@@ -15,10 +15,9 @@ public class Board {
     }
 
     public void play(int numberOfRounds, int stepsByRound) {
-        dots.get(0).move(new MyVector(1,0));
-        if(stepsByRound == 2){
-            dots.get(0).move(new MyVector(0,-1));
+        VectorGeneratorTest vectorGenerator = new VectorGeneratorTest(0,0);
+        for( int i=0; i<stepsByRound; i++) {
+            dots.get(0).move(vectorGenerator.generate());
         }
-
     }
 }
