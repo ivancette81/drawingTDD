@@ -49,7 +49,40 @@ public class Drawing2Test {
                         dot.equals(new Dot(401,799))
                 );
 
-//        assertThat(board.getDots(),is(Arrays.asList(new Dot(399,799))));
+    }
+    @Test
+    public void oneDot_OneStep_OneRound_WithLimits(){
+        Board board = new Board(800,800);
+        board.setDotsInitialPosition(400,795);
+        board.createDots(1);
+        board.play(1,1);
+        Dot dot = board.getDots().get(0);
+        assertTrue(dot.betweenBoundaries(800,800));
+    }
+
+    @Test
+    public void oneDot_AnyNumberOfSteps_OneRound_WithLimits(){
+        Board board = new Board(800,800);
+        board.setDotsInitialPosition(400,795);
+        board.createDots(1);
+        board.play(1,2000);
+        Dot dot = board.getDots().get(0);
+        assertTrue(dot.betweenBoundaries(800,800));
+    }
+    @Test
+    public void oneDot_AnyNumberOfSteps_OneRound_OneForbiddenZone(){
+        Board board = new Board(800,800);
+        board.setDotsInitialPosition(400,795);
+        board.createDots(1);
+
+        Zone zone = new Zone(200, 700, 600, 750);
+        board.setForbiddenZone(zone);
+
+        board.play(1,2000);
+
+        Dot dot = board.getDots().get(0);
+        assertTrue(dot.betweenBoundaries(800,800));
+        assertTrue(dot.outsideZone(zone));
     }
 /*
     @Test

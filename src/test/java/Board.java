@@ -4,6 +4,7 @@ import java.util.List;
 public class Board {
     private int width;
     private int heigth;
+    private List<Zone> forbiddenZoneList;
 
     public int getWidth() {return width;}
     public int getHeigth() {return heigth;}
@@ -17,16 +18,11 @@ public class Board {
 
     private List<Dot> dots;
 
-
-
- /*   public Board() {
-        this.dots = new ArrayList<>();
-        dots.add(new Dot(400,800));
-    }*/
-
     public Board(int _width, int _heigth) {
         width = _width;
         heigth = _heigth;
+
+        forbiddenZoneList = new ArrayList<>();
     }
 
     public List<Dot> getDots() {
@@ -36,8 +32,14 @@ public class Board {
     public void play(int numberOfRounds, int stepsByRound) {
         VectorGenerator vectorGenerator = new VectorGeneratorImpl();
         for( int i=0; i<stepsByRound; i++) {
-            dots.get(0).move(vectorGenerator.generate());
+            if(!isDotDead(dots.get(0))) {
+                dots.get(0).move(vectorGenerator.generate());
+            }
         }
+    }
+
+    private boolean isDotDead(Dot dot) {
+        return !dot.isDead(width, heigth);
     }
 
     public void setDotsInitialPosition(int inX, int inY) {
@@ -50,4 +52,9 @@ public class Board {
         for(int i=0;i<numDots;i++)
             dots.add(new Dot(dotsInitialPositionX, dotsInitialPositionY));
     }
+
+    public void setForbiddenZone(Zone zone) {
+        forbiddenZoneList.add(zone);
+    }
+
 }

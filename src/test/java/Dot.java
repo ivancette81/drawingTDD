@@ -1,12 +1,10 @@
 import java.util.Objects;
 
 public class Dot{
-    private int x;
-    private int y;
+    private Coordinates coordinates;
 
     public Dot(int x, int y) {
-        this.x = x;
-        this.y = y;
+        coordinates = new Coordinates(x,y);
     }
 
     @Override
@@ -14,24 +12,36 @@ public class Dot{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dot dot = (Dot) o;
-        return x == dot.x && y == dot.y;
+        return Objects.equals(coordinates, dot.coordinates);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(coordinates);
     }
 
     @Override
     public String toString() {
         return "Dot{" +
-                "x=" + x +
-                ", y=" + y +
+                "coordinates=" + coordinates +
                 '}';
     }
 
     public void move(MyVector myVector) {
-        x= myVector.applyX(x);
-        y= myVector.applyY(y);
+        coordinates.applyVector(myVector);
+    }
+
+    public boolean betweenBoundaries(int width, int heigth) {
+        return coordinates.isInsideSecondQuadrant(width, heigth) &&
+                coordinates.isInsideFourthQuadrant(0, 0);
+    }
+
+    public boolean outsideZone(Zone zone) {
+        return zone.isOutsideZone(coordinates);
+    }
+
+    public boolean isDead(int width, int heigth) {
+        Zone board = new Zone(0,width,0,heigth);
+        return board.isOutsideZone(coordinates);
     }
 }
