@@ -11,3 +11,17 @@
    * Volvemos al inicio de la ronda con las siguientes condiciones: crearemos una nueva población de 50 puntos, uno de los cuales será el mejor de la ronda anterior.  Calcularemos los movimientos de cada punto a partir del mejor de la ronda anterior, con una probabilidad de recalculo de cada movimiento de un 10%
 * Mostraremos cada una de las rondas en un canvas AWT, coloreando de verde el mejor punto de la ronda anterior
 
+--Zona espacial 800x800
+--punto objetivo en (400,0)
+--punto en 400, 800
+el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes
+el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes muriendo si se sale de la zona
+el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes muriendo si se sale o toca en zonas prohibidas
+el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
+n puntos se mueven de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
+m veces ocurre que n puntos se mueven de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
+calculamos distancia entre dos puntos en la misma posición
+calculamos distancia entre dos puntos separados en una coordenada
+calculamos distancia entre dos puntos separados en ambas coordenada
+Copiamos los movimientos de un punto en otro punto
+Copiamos los movimientos de un punto en otro punto aplicando un coeficiente de mutación en cada movimiento

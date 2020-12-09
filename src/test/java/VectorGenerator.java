@@ -1,3 +1,3 @@
-public abstract class VectorGenerator {
-    public abstract MyVector generate();
+public interface VectorGenerator {
+    MyVector generate();
 }

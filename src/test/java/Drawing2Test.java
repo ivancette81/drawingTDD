@@ -3,31 +3,65 @@ import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Drawing2Test {
     @Test
-    public void zeroStepsOneDot(){
-        Board board = new Board();
-        assertThat(board.getDots(),is(Arrays.asList(new Dot(400,800))));
+    public void createBoard(){
+        Board board = new Board(800, 800);
+        assertEquals(board.getWidth(), 800);
+        assertEquals(board.getHeigth(), 800);
+    }
+    @Test
+    public void createGoalDot(){
+        Board board = new Board(800, 800);
+        Dot dot = new Dot(0,400);
+        board.setGoalDot(dot);
+
+        assertTrue(board.getGoalDot().equals(dot));
     }
 
     @Test
-    public void oneStep_OneDot(){
-        Board board = new Board();
-        board.play(1,1);
-        assertThat(board.getDots(),is(Arrays.asList(new Dot(399,799))));
+    public void createOneDotInDotsInitialPosition(){
+        Board board = new Board(800, 800);
+        board.setDotsInitialPosition(400,800);
+        board.createDots(1);
+
+        assertEquals(Arrays.asList(new Dot(400,800)),board.getDots());
     }
 
+    @Test
+    public void oneDot_OneStep_OneRound(){
+        Board board = new Board(800,800);
+        board.setDotsInitialPosition(400,800);
+        board.createDots(1);
+        board.play(1,1);
+        Dot dot = board.getDots().get(0);
+        assertTrue(dot.equals(new Dot(400,800)) ||
+                        dot.equals(new Dot(400,801)) ||
+                        dot.equals(new Dot(400,799)) ||
+                        dot.equals(new Dot(399,800)) ||
+                        dot.equals(new Dot(399,801)) ||
+                        dot.equals(new Dot(399,799)) ||
+                        dot.equals(new Dot(401,800)) ||
+                        dot.equals(new Dot(401,801)) ||
+                        dot.equals(new Dot(401,799))
+                );
+
+//        assertThat(board.getDots(),is(Arrays.asList(new Dot(399,799))));
+    }
+/*
     @Test
     public void twoSteps_OneDot(){
-        Board board = new Board();
+        Board board = new Board(800,800);
         board.play(1,2);
         assertThat(board.getDots(),is(Arrays.asList(new Dot(399,799))));
     }
 
     @Test
     public void anyStepNumber_OneDot(){
-        Board board = new Board();
+        Board board = new Board(800,800);
         int stepsByRound = (int)Math.round(Math.random()*100);
         board.play(1,stepsByRound);
         if((stepsByRound%4) == 0 || (stepsByRound%4) == 1) {
@@ -36,5 +70,5 @@ public class Drawing2Test {
         else {
             assertThat(board.getDots(), is(Arrays.asList(new Dot(400, 800))));
         }
-    }
+    }*/
 }

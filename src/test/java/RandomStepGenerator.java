@@ -1,4 +1,3 @@
 public interface RandomStepGenerator {
-    public int generate();
-
+    int generate();
 }

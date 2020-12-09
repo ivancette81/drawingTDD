@@ -1,4 +1,4 @@
-public class VectorGeneratorTest extends VectorGenerator {
+public class VectorGeneratorTest implements VectorGenerator {
     private int x;
     private int y;
 
