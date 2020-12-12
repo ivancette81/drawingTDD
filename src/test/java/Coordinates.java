@@ -30,24 +30,21 @@ public class Coordinates {
         return Objects.hash(x, y);
     }
 
-    public boolean isInsideFirstQuadrant(Coordinates coordinates) {
-        return coordinates.x >= this.x && coordinates.y <= this.y;
+    public boolean inSecondQuadrant(Coordinates coordinates) {
+        return coordinates.x > x && coordinates.y > y;
     }
 
-    public boolean isInsideThirdQuadrant(Coordinates coordinates) {
-        return coordinates.x <= this.x && coordinates.y >= this.y;
-    }
-
-    public boolean isInsideSecondQuadrant(int x, int y) {
-        return x >= this.x && y >= this.y;
-    }
-
-    public boolean isInsideFourthQuadrant(int x, int y) {
-        return x <= this.x && y <= this.y;
+    public boolean inFourthQuadrant(Coordinates coordinates) {
+        return coordinates.x < x && coordinates.y < y;
     }
 
     public void applyVector(MyVector myVector) {
         x = myVector.applyX(x);
         y = myVector.applyY(y);
+    }
+
+    public boolean onTheEdge(Coordinates topLeft, Coordinates bottomRigth) {
+        return x == topLeft.x || x == bottomRigth.x ||
+                y == topLeft.y || y == bottomRigth.y;
     }
 }

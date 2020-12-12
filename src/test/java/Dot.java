@@ -3,8 +3,8 @@ import java.util.Objects;
 public class Dot{
     private Coordinates coordinates;
 
-    public Dot(int x, int y) {
-        coordinates = new Coordinates(x,y);
+    public Dot(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     @Override
@@ -31,17 +31,15 @@ public class Dot{
         coordinates.applyVector(myVector);
     }
 
-    public boolean betweenBoundaries(int width, int heigth) {
-        return coordinates.isInsideSecondQuadrant(width, heigth) &&
-                coordinates.isInsideFourthQuadrant(0, 0);
-    }
-
     public boolean outsideZone(Zone zone) {
-        return zone.isOutsideZone(coordinates);
+        return !zone.isInsideZone(coordinates);
     }
 
-    public boolean isDead(int width, int heigth) {
-        Zone board = new Zone(0,width,0,heigth);
-        return board.isOutsideZone(coordinates);
+    public boolean insideZone(Zone zone) {
+        return zone.isInsideZone(coordinates);
+    }
+
+    public boolean onTheEdge(Zone zone) {
+        return zone.onTheEdge(coordinates);
     }
 }

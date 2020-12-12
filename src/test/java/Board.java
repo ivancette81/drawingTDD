@@ -2,59 +2,70 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private int width;
-    private int heigth;
+    private Coordinates boardBottomRigthCoordinates;
     private List<Zone> forbiddenZoneList;
-
-    public int getWidth() {return width;}
-    public int getHeigth() {return heigth;}
-
     private Dot goalDot;
-    public void setGoalDot(Dot dot) {goalDot = dot;}
-    public Dot getGoalDot() {return goalDot;}
-
-    private int dotsInitialPositionX;
-    private int dotsInitialPositionY;
-
+    private Coordinates dotsInitialPositionCoordinates;
     private List<Dot> dots;
 
-    public Board(int _width, int _heigth) {
-        width = _width;
-        heigth = _heigth;
-
+    public Board(Coordinates boardBottomRigthCoordinates, Dot goalDot, Coordinates dotsInitialPositionCoordinates) {
+        this.boardBottomRigthCoordinates = boardBottomRigthCoordinates;
+        this.goalDot = goalDot;
+        this.dotsInitialPositionCoordinates = dotsInitialPositionCoordinates;
         forbiddenZoneList = new ArrayList<>();
     }
 
+    public Dot getGoalDot() {return goalDot;}
     public List<Dot> getDots() {
         return dots;
     }
 
     public void play(int numberOfRounds, int stepsByRound) {
         VectorGenerator vectorGenerator = new VectorGeneratorImpl();
-        for( int i=0; i<stepsByRound; i++) {
-            if(!isDotDead(dots.get(0))) {
-                dots.get(0).move(vectorGenerator.generate());
+        for (int i = 0; i<numberOfRounds; i++) {
+            for (int j = 0; j < stepsByRound; j++) {
+                for (Dot dot : dots) {
+                    if (!isDotDead(dot)) {
+                        dot.move(vectorGenerator.generate());
+                    }
+                }
             }
         }
     }
 
     private boolean isDotDead(Dot dot) {
-        return !dot.isDead(width, heigth);
-    }
-
-    public void setDotsInitialPosition(int inX, int inY) {
-        dotsInitialPositionX = inX;
-        dotsInitialPositionY = inY;
+        boolean onAnyEdge = false;
+        onAnyEdge = dot.onTheEdge(new Zone(new Coordinates(0,0), boardBottomRigthCoordinates));
+        for(Zone forbiddenZone : forbiddenZoneList){
+            onAnyEdge = onAnyEdge || dot.onTheEdge(forbiddenZone);
+        }
+        return onAnyEdge;
     }
 
     public void createDots(int numDots) {
         dots = new ArrayList<>();
         for(int i=0;i<numDots;i++)
-            dots.add(new Dot(dotsInitialPositionX, dotsInitialPositionY));
+            dots.add(new Dot(dotsInitialPositionCoordinates));
     }
 
-    public void setForbiddenZone(Zone zone) {
+    public void addForbiddenZone(Zone zone) {
         forbiddenZoneList.add(zone);
     }
 
+    public boolean isDotOutsideForbiddenZones(Dot dot) {
+        boolean isOutside = true;
+        for(Zone forbiddenZone : forbiddenZoneList){
+            isOutside = isOutside && dot.outsideZone(forbiddenZone);
+        }
+
+        return isOutside;
+    }
+
+    public Coordinates getBoardBottomRigthCoordinates() {
+        return boardBottomRigthCoordinates;
+    }
+
+    public Zone getBoardZone() {
+        return new Zone(new Coordinates(0, 0), boardBottomRigthCoordinates);
+    }
 }
