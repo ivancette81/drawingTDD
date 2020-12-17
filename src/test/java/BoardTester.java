@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BoardTester {
     @Test
     public void isDotOutsideForbiddenZones_OneZone(){
-        Board board = new Board(new Coordinates(800, 800), null,null);
+        Board board = new Board(new Coordinates(800, 800),
+                null,
+                null,
+                        0);
         Zone forbiddenZone = new Zone (new Coordinates(Math.min(200, 600), Math.min(200, 600)), new Coordinates(Math.max(200, 600), Math.max(200, 600)));
         board.addForbiddenZone(forbiddenZone);
 

@@ -1,10 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Dot{
+public class Dot {
     private Coordinates coordinates;
+    private boolean isBestDot;
+    private List<MyVector> movements;
 
     public Dot(Coordinates coordinates) {
-        this.coordinates = coordinates;
+        this.coordinates = new Coordinates(coordinates.getX(), coordinates.getY()) ;
+        isBestDot = false;
+        movements = new ArrayList<>();
     }
 
     @Override
@@ -29,6 +35,7 @@ public class Dot{
 
     public void move(MyVector myVector) {
         coordinates.applyVector(myVector);
+        movements.add(myVector);
     }
 
     public boolean outsideZone(Zone zone) {
@@ -41,5 +48,17 @@ public class Dot{
 
     public boolean onTheEdge(Zone zone) {
         return zone.onTheEdge(coordinates);
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public boolean isBest() {
+        return isBestDot;
+    }
+
+    public void setBest() {
+        isBestDot = true;
     }
 }

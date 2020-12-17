@@ -14,14 +14,15 @@
 --Zona espacial 800x800
 --punto objetivo en (400,0)
 --punto en 400, 800
-el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes
-el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes muriendo si se sale de la zona
-el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes muriendo si se sale o toca en zonas prohibidas
-el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
-n puntos se mueven de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
-m veces ocurre que n puntos se mueven de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
-calculamos distancia entre dos puntos en la misma posición
-calculamos distancia entre dos puntos separados en una coordenada
-calculamos distancia entre dos puntos separados en ambas coordenada
+--el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes
+--el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes muriendo si se sale de la zona
+--el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes muriendo si se sale o toca en zonas prohibidas
+--el punto se mueve de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
+--n puntos se mueven de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
+--m veces ocurre que n puntos se mueven de forma aleatoria a una de las 9 posiciones adyacentes un número n de veces muriendo si se sale o toca en zonas prohibidas
+--creamos un punto en la posición inicial y calculamos su distancia al punto objetivo
+--creamos dos puntos en la posición inicial, los movemos y cogemos el de menor distancia al punto objetivo
+-*calculamos distancia entre dos puntos separados en ambas coordenada
+--guardamos los movimientos de un punto
 Copiamos los movimientos de un punto en otro punto
 Copiamos los movimientos de un punto en otro punto aplicando un coeficiente de mutación en cada movimiento
